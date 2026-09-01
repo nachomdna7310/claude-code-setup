@@ -128,11 +128,27 @@ claude mcp add firecrawl --env FIRECRAWL_API_KEY=TU_API_KEY -- npx -y firecrawl-
 brew install jq gh          # jq lo necesitan varios hooks; gh para GitHub
 ```
 
-- `graphify` (grafo de conocimiento del código, usado por el skill `/graphify`) —
-  se instala en `~/.local/bin/graphify`. Ver instrucciones en `skills/graphify/SKILL.md`.
+```bash
+# graphify (grafo de conocimiento del código, usado por el skill /graphify)
+uv tool install graphifyy      # deja graphify y graphify-mcp en ~/.local/bin
+```
+
+Si no tenés `uv`: `brew install uv`.
+Opcional: `brew install ollama` (algunos skills lo usan para modelos locales).
 
 ## 6. Configuración global (opcional)
 
 - `CLAUDE.md.example` → copiar a `~/.claude/CLAUDE.md` (reglas globales).
 - `settings.reference.json` → referencia de `~/.claude/settings.json`
   (hooks de graphify + plugins habilitados). **No trae ninguna API key.**
+- `statusline-command.sh` → barra de estado (modelo | carpeta | branch | contexto | costo):
+
+```bash
+cp statusline-command.sh ~/.claude/
+```
+
+y en `~/.claude/settings.json`:
+
+```json
+"statusLine": { "type": "command", "command": "bash ~/.claude/statusline-command.sh" }
+```

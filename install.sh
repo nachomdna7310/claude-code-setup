@@ -44,4 +44,8 @@ claude mcp add --transport http context7 https://mcp.context7.com/mcp
 echo "  firecrawl: agregalo con TU key ->"
 echo "  claude mcp add firecrawl --env FIRECRAWL_API_KEY=TU_KEY -- npx -y firecrawl-mcp"
 
+say "graphify + statusline"
+command -v uv >/dev/null 2>&1 && uv tool install graphifyy || echo "  (instalá uv: brew install uv, luego: uv tool install graphifyy)"
+cp "$(dirname "$0")/statusline-command.sh" ~/.claude/ 2>/dev/null
+
 say "Listo. Reiniciá Claude Code. Falta: brew install jq gh"
