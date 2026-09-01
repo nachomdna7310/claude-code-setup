@@ -27,7 +27,7 @@ claude plugin install claude-mem@thedotmack
 
 say "Skills (170)"
 mkdir -p ~/.claude/skills
-cp -R "$(dirname "$0")"/skills/* ~/.claude/skills/
+cp -Rn "$(dirname "$0")"/skills/* ~/.claude/skills/
 
 say "Skills que son repos git"
 cd ~/.claude/skills
@@ -38,11 +38,11 @@ done
 cd - >/dev/null
 
 say "MCP servers"
-claude mcp add chrome-devtools -- npx chrome-devtools-mcp@1.7.0
-claude mcp add playwright -- npx @playwright/mcp@latest
-claude mcp add --transport http context7 https://mcp.context7.com/mcp
+claude mcp add -s user chrome-devtools -- npx chrome-devtools-mcp@1.7.0
+claude mcp add -s user playwright -- npx @playwright/mcp@latest
+claude mcp add -s user --transport http context7 https://mcp.context7.com/mcp
 echo "  firecrawl: agregalo con TU key ->"
-echo "  claude mcp add firecrawl --env FIRECRAWL_API_KEY=TU_KEY -- npx -y firecrawl-mcp"
+echo "  claude mcp add -s user firecrawl --env FIRECRAWL_API_KEY=TU_KEY -- npx -y firecrawl-mcp"
 
 say "graphify + statusline"
 command -v uv >/dev/null 2>&1 && uv tool install graphifyy || echo "  (instalá uv: brew install uv, luego: uv tool install graphifyy)"

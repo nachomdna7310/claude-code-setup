@@ -75,8 +75,10 @@ claude plugin install claude-mem@thedotmack
 **170 skills** están en la carpeta `skills/` de este repo. Copiar tal cual:
 
 ```bash
-mkdir -p ~/.claude/skills && cp -R skills/* ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -Rn skills/* ~/.claude/skills/
 ```
+
+> `-n` = no sobrescribe skills que ya tengas.
 
 Incluye: game-dev completo (GDD, sprints, QA, release), diseño/animación
 (apple-design, animate, emil-design-eng, liquid-glass-design, shadcn-ui),
@@ -108,12 +110,15 @@ git clone https://github.com/Hainrixz/whatsapp-agentkit.git
 ## 4. MCP servers
 
 ```bash
-claude mcp add chrome-devtools -- npx chrome-devtools-mcp@1.7.0
-claude mcp add playwright -- npx @playwright/mcp@latest
-claude mcp add --transport http context7 https://mcp.context7.com/mcp
+claude mcp add -s user chrome-devtools -- npx chrome-devtools-mcp@1.7.0
+claude mcp add -s user playwright -- npx @playwright/mcp@latest
+claude mcp add -s user --transport http context7 https://mcp.context7.com/mcp
 # Firecrawl necesita TU PROPIA API key (https://firecrawl.dev)
-claude mcp add firecrawl --env FIRECRAWL_API_KEY=TU_API_KEY -- npx -y firecrawl-mcp
+claude mcp add -s user firecrawl --env FIRECRAWL_API_KEY=TU_API_KEY -- npx -y firecrawl-mcp
 ```
+
+> `-s user` es obligatorio: sin eso los MCP quedan atados a la carpeta donde corriste
+> el comando y no aparecen en tus otros proyectos.
 
 | MCP | Link |
 |---|---|
